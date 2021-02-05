@@ -71,7 +71,7 @@ class Who(command.Command):
                         await self.message.author.send('Some kind of file error occurred, retry.')
                 else:
                     await self.message.author.send('Section {} appears to be empty.'.format(section_num))
-        elif self.message.content.startswith('!who is on duty'):
+        elif self.message.content.startswith('!who is on duty') or self.message.content.startswith('!onduty'):
             office_hour_queue = mongo.db[self.__QUEUE_COLLECTION]
             queue_doc = office_hour_queue.find_one()
             on_duty_tas = [await self.guild.fetch_member(ta_id) for ta_id in queue_doc[self.__AVAILABLE_TAS]]
